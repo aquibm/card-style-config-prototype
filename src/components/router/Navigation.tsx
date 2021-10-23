@@ -1,18 +1,23 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { useRouteMatch } from "react-router";
 
-export const Navigation: FC = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link to="/basic">Basic</Link>
-      </li>
-      <li>
-        <Link to="/events">Events</Link>
-      </li>
-      <li>
-        <Link to="/custom">Custom</Link>
-      </li>
-    </ul>
-  </nav>
-);
+import { Nav, Link } from "./Navigation.styles";
+
+export const Navigation: FC = () => {
+  const eventsSelected = useRouteMatch("/events");
+  const customSelected = useRouteMatch("/custom");
+
+  return (
+    <Nav>
+      <Link to="/basic" selected={!eventsSelected && !customSelected}>
+        Basic
+      </Link>
+      <Link to="/events" selected={Boolean(eventsSelected)}>
+        Events
+      </Link>
+      <Link to="/custom" selected={Boolean(customSelected)}>
+        Custom
+      </Link>
+    </Nav>
+  );
+};
