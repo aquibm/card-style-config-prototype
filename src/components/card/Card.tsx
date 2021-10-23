@@ -6,7 +6,7 @@ import "./card.css";
 
 type Props = {
   schema: string;
-  data: Record<string, string>;
+  data: Record<string, string | number>;
 };
 
 type Section = {

@@ -26,8 +26,24 @@ a {
   text-decoration: none;
 }
 
+div::selection,
+h1::selection {
+  background-color: palevioletred;
+  color: white;
+}
+
 .app {
   max-width: 800px;
   margin: 0 auto;
   padding: 40px;
+}
+
+.app__section {
+  margin-bottom: 80px;
+}
+
+.app__title {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 30px;
 }
