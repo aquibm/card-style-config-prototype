@@ -18,6 +18,9 @@ sections:
       right:
         content: date
   body:
+    style:
+      font-size: 16px
+      line-height: 1.5
     content: content
 `;
 
