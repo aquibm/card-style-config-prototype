@@ -1,4 +1,4 @@
-const data = [
+const data = JSON.stringify([
   {
     id: "AB-0021",
     date: "21/02/2021 8:08pm",
@@ -17,7 +17,7 @@ const data = [
     content:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi beatae alias numquam saepe error! Blanditiis laborum rem quibusdam ab doloribus. Voluptatem, repudiandae illum? Repellendus sapiente, numquam debitis voluptate reiciendis suscipit.",
   },
-];
+]);
 
 const schema = `
 layout: card

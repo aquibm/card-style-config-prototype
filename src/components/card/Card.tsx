@@ -1,27 +1,17 @@
 import { FC } from "react";
-import yaml from "yaml";
 import styled from "styled-components";
 
 import "./card.css";
 
+import { Schema, Section } from "../../types/schema.types";
+import { Data } from "../../types/data.types";
+
 type Props = {
-  schema: string;
-  data: Record<string, string | number>;
+  schema: Schema;
+  data: Data;
 };
 
-type Section = {
-  style?: Record<string, string>;
-  content: string | Record<string, Section>;
-};
-
-type Schema = {
-  layout: string;
-  sections: Record<string, Section>;
-};
-
-const Card: FC<Props> = ({ schema, data }: Props) => {
-  const parsedSchema = yaml.parse(schema) as Schema;
-
+export const Card: FC<Props> = ({ schema, data }: Props) => {
   const parseStyle = (style?: Record<string, string>): string => {
     if (!style) {
       return "";
@@ -52,15 +42,13 @@ const Card: FC<Props> = ({ schema, data }: Props) => {
     );
   };
 
-  const topLevelSectionNames = Object.keys(parsedSchema.sections);
+  const topLevelSectionNames = Object.keys(schema.sections);
 
   return (
     <div className="card">
       {topLevelSectionNames.map((sectionName) =>
-        renderSection(parsedSchema.sections[sectionName], sectionName)
+        renderSection(schema.sections[sectionName], sectionName)
       )}
     </div>
   );
 };
-
-export default Card;

@@ -1,4 +1,4 @@
-const data = [
+const data = JSON.stringify([
   {
     date: "21",
     month: "Feb",
@@ -13,7 +13,7 @@ const data = [
     description:
       "What are we supposed to test? How do we test our app on both unit and integration levels? How can we make sure our app will work properly in a live environment?",
   },
-];
+]);
 
 const schema = `
 layout: card
