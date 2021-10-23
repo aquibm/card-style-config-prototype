@@ -26,20 +26,25 @@ a {
   text-decoration: none;
 }
 
-div::selection,
-h1::selection {
+*::selection {
   background-color: palevioletred;
   color: white;
 }
 
 .app {
-  max-width: 800px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 40px;
+  padding: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .app {
+    padding: 40px;
+  }
 }
 
 .app__section {
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 }
 
 .app__title {

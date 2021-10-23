@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 import Card from "./components/card";
 
@@ -10,21 +11,51 @@ import "./index.css";
 
 const App: FC = () => {
   return (
-    <div className="app">
-      <div className="app__section">
-        <h1 className="app__title">Basic</h1>
-        {basicData.map((item) => (
-          <Card key={item.id} schema={basicSchema} data={item} />
-        ))}
-      </div>
+    <Router>
+      <div className="app">
+        <div className="app__section">
+          <h1>Config based card layout</h1>
+        </div>
 
-      <div className="app__section">
-        <h1 className="app__title">Events</h1>
-        {eventData.map((item) => (
-          <Card key={item.title} schema={eventSchema} data={item} />
-        ))}
+        <div className="app__section">
+          <ul>
+            <li>
+              <Link to="/basic">Basic</Link>
+            </li>
+            <li>
+              <Link to="/event">Event</Link>
+            </li>
+            <li>
+              <Link to="/custom">Custom</Link>
+            </li>
+          </ul>
+        </div>
+
+        <div className="app__section">
+          <Switch>
+            <Route path="/basic">
+              {basicData.map((item) => (
+                <Card key={item.id} schema={basicSchema} data={item} />
+              ))}
+            </Route>
+
+            <Route path="/event">
+              {eventData.map((item) => (
+                <Card key={item.title} schema={eventSchema} data={item} />
+              ))}
+            </Route>
+
+            <Route path="/custom">Custom stuff.</Route>
+
+            <Route>
+              {basicData.map((item) => (
+                <Card key={item.id} schema={basicSchema} data={item} />
+              ))}
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 };
 
