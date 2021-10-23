@@ -8,18 +8,7 @@
   margin-bottom: 15px;
 }
 
-.card__header {
-  margin-bottom: 18px;
-  display: flex;
-  justify-content: space-between;
-
-  color: #acacac;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.card__body {
-  font-size: 16px;
-  line-height: 1.5;
+.card div::selection {
+  background-color: palevioletred;
+  color: white;
 }

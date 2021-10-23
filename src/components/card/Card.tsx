@@ -1,23 +1,66 @@
 import { FC } from "react";
-import { format } from "date-fns";
+import yaml from "yaml";
+import styled from "styled-components";
 
 import "./card.css";
 
 type Props = {
-  id: string;
-  date: Date;
-  content: string;
+  schema: string;
+  data: Record<string, string>;
 };
 
-const Card: FC<Props> = ({ id, date, content }: Props) => (
-  <div className="card">
-    <div className="card__header">
-      <div>{id}</div>
-      <div>{format(date, "dd/MM/yy h:mmaaa")}</div>
-    </div>
+type Section = {
+  style?: Record<string, string>;
+  content: string | Record<string, Section>;
+};
 
-    <div className="card__body">{content}</div>
-  </div>
-);
+type Schema = {
+  layout: string;
+  sections: Record<string, Section>;
+};
+
+const Card: FC<Props> = ({ schema, data }: Props) => {
+  const parsedSchema = yaml.parse(schema) as Schema;
+
+  const parseStyle = (style?: Record<string, string>): string => {
+    if (!style) {
+      return "";
+    }
+
+    return Object.keys(style)
+      .map((key) => `${key}: ${style[key]}`)
+      .join("; ");
+  };
+
+  const renderSection = (section: Section, name: string) => {
+    const { content, style } = section;
+    const Element = styled.div`
+      ${parseStyle(style)}
+    `;
+
+    if (typeof content === "string") {
+      return <Element key={name}>{data[content]}</Element>;
+    }
+
+    const subSectionNames = Object.keys(content);
+    return (
+      <Element key={name}>
+        {subSectionNames.map((subSectionName) =>
+          renderSection(content[subSectionName], subSectionName)
+        )}
+      </Element>
+    );
+  };
+
+  const topLevelSectionNames = Object.keys(parsedSchema.sections);
+
+  return (
+    <div className="card">
+      {topLevelSectionNames.map((sectionName) =>
+        renderSection(parsedSchema.sections[sectionName], sectionName)
+      )}
+    </div>
+  );
+};
 
 export default Card;

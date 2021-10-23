@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import ReactDOM from "react-dom";
 import { format } from "date-fns";
 
-import ConfigCard from "./components/config-card/ConfigCard";
+import Card from "./components/card";
 import basicSchema from "./schema/basic";
 
 import "./index.css";
@@ -32,7 +32,7 @@ const App: FC = () => {
   return (
     <div className="app">
       {data.map((item) => (
-        <ConfigCard key={item.id} schema={basicSchema} data={item} />
+        <Card key={item.id} schema={basicSchema} data={item} />
       ))}
     </div>
   );
