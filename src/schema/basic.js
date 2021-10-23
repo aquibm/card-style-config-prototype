@@ -1,3 +1,4 @@
+const basicSchema = `
 layout: card
 sections:
   header:
@@ -18,3 +19,6 @@ sections:
         content: date
   body:
     content: content
+`;
+
+export default basicSchema;
