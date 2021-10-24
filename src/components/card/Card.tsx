@@ -1,54 +1,54 @@
-import { FC } from "react";
-import styled from "styled-components";
+import { FC } from 'react';
+import styled from 'styled-components';
 
-import "./card.css";
+import './card.css';
 
-import { Schema, Section } from "../../types/schema.types";
-import { Data } from "../../types/data.types";
+import { Schema, Section } from '../../types/schema.types';
+import { Data } from '../../types/data.types';
 
 type Props = {
-  schema: Schema;
-  data: Data;
+    schema: Schema;
+    data: Data;
 };
 
 export const Card: FC<Props> = ({ schema, data }: Props) => {
-  const parseStyle = (style?: Record<string, string>): string => {
-    if (!style) {
-      return "";
-    }
+    const parseStyle = (style?: Record<string, string>): string => {
+        if (!style) {
+            return '';
+        }
 
-    return Object.keys(style)
-      .map((key) => `${key}: ${style[key]}`)
-      .join("; ");
-  };
+        return Object.keys(style)
+            .map((key) => `${key}: ${style[key]}`)
+            .join('; ');
+    };
 
-  const renderSection = (section: Section, name: string) => {
-    const { content, style } = section;
-    const Element = styled.div`
-      ${parseStyle(style)}
-    `;
+    const renderSection = (section: Section, name: string) => {
+        const { content, style } = section;
+        const Element = styled.div`
+            ${parseStyle(style)}
+        `;
 
-    if (typeof content === "string") {
-      return <Element key={name}>{data[content]}</Element>;
-    }
+        if (typeof content === 'string') {
+            return <Element key={name}>{data[content]}</Element>;
+        }
 
-    const subSectionNames = Object.keys(content);
+        const subSectionNames = Object.keys(content);
+        return (
+            <Element key={name}>
+                {subSectionNames.map((subSectionName) =>
+                    renderSection(content[subSectionName], subSectionName),
+                )}
+            </Element>
+        );
+    };
+
+    const topLevelSectionNames = Object.keys(schema.sections);
+
     return (
-      <Element key={name}>
-        {subSectionNames.map((subSectionName) =>
-          renderSection(content[subSectionName], subSectionName)
-        )}
-      </Element>
+        <div className="card">
+            {topLevelSectionNames.map((sectionName) =>
+                renderSection(schema.sections[sectionName], sectionName),
+            )}
+        </div>
     );
-  };
-
-  const topLevelSectionNames = Object.keys(schema.sections);
-
-  return (
-    <div className="card">
-      {topLevelSectionNames.map((sectionName) =>
-        renderSection(schema.sections[sectionName], sectionName)
-      )}
-    </div>
-  );
 };
