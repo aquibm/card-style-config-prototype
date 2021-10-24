@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { StyledComponent } from 'styled-components';
 
 import './card.css';
 
-import { Schema, Section } from '../../types/schema.types';
+import { Schema, Section, Style } from '../../types/schema.types';
 import { Data } from '../../types/data.types';
 
 type Props = {
@@ -12,14 +12,50 @@ type Props = {
 };
 
 export const Card: FC<Props> = ({ schema, data }: Props) => {
-    const parseStyle = (style?: Record<string, string>): string => {
+    const parseStyle = (
+        style?: Style,
+    ): StyledComponent<'div', any, {}, never> => {
         if (!style) {
-            return '';
+            return styled.div``;
         }
 
-        return Object.keys(style)
-            .map((key) => `${key}: ${style[key]}`)
+        if (typeof style === 'string') {
+            return styled.div.attrs(() => ({ className: style }))``;
+        }
+
+        if (Array.isArray(style)) {
+            let classNames: string[] = [];
+            let cssProperties: Record<string, string> = {};
+
+            style.forEach((styleDef) => {
+                if (typeof styleDef === 'string') {
+                    classNames = [...classNames, styleDef];
+                }
+
+                if (typeof styleDef === 'object') {
+                    cssProperties = { ...cssProperties, ...styleDef };
+                }
+            });
+
+            const cssRules = Object.keys(cssProperties)
+                .map((key) => `${key}: ${cssProperties[key]}`)
+                .join('; ');
+
+            return styled.div.attrs(() => ({
+                className: classNames.join(' '),
+            }))`
+                ${cssRules}
+            `;
+        }
+
+        const cssProperties = style as Record<string, string>;
+        const cssRules = Object.keys(cssProperties)
+            .map((key) => `${key}: ${cssProperties[key]}`)
             .join('; ');
+
+        return styled.div`
+            ${cssRules}
+        `;
     };
 
     const renderSection = (section: Section, name: string) => {
@@ -28,9 +64,7 @@ export const Card: FC<Props> = ({ schema, data }: Props) => {
         }
 
         const { content, style } = section;
-        const Element = styled.div`
-            ${parseStyle(style)}
-        `;
+        const Element = parseStyle(style);
 
         if (!content) {
             return <Element key={name}>{data[content]}</Element>;
