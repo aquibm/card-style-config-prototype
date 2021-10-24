@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Documentation } from './components/docs';
 
 import Header from './components/header';
 import { AppRouter, Navigation } from './components/router';
@@ -23,6 +24,8 @@ const App: FC = () => {
                     <AppRouter />
                 </div>
             </div>
+
+            <Documentation />
         </Router>
     );
 };
