@@ -1,5 +1,14 @@
 import { useMemo } from 'react';
 import { Data } from '../../../types/data.types';
 
-export const useData = (rawData: string): Data[] =>
-    useMemo<Data[]>(() => JSON.parse(rawData), [rawData]);
+type DataTuple = [data: Data[], error: Error | null];
+
+export const useData = (rawData: string): DataTuple =>
+    useMemo<DataTuple>(() => {
+        try {
+            const data = JSON.parse(rawData) as Data[];
+            return [data, null];
+        } catch (error) {
+            return [[], error as Error];
+        }
+    }, [rawData]);

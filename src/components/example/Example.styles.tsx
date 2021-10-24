@@ -19,3 +19,21 @@ export const Heading = styled.h4`
     text-transform: uppercase;
     font-weight: 400;
 `;
+
+export const ErrorContainer = styled.div`
+    background-color: #fff5f5;
+    border: 1px solid #fc8181;
+    color: #c53030;
+
+    padding: 20px;
+    border-radius: 8px;
+`;
+
+export const ErrorHeading = styled.h5`
+    font-size: 18px;
+    margin: 0;
+`;
+
+export const ErrorMessage = styled.p`
+    margin: 18px 0 0;
+`;

@@ -10,6 +10,9 @@ import {
     EditorContainer,
     CardContainer,
     Heading,
+    ErrorContainer,
+    ErrorHeading,
+    ErrorMessage,
 } from './Example.styles';
 
 type Props = {
@@ -22,7 +25,7 @@ export const Example: FC<Props> = ({ rawSchema, rawData }: Props) => {
     const [editorData, setEditorData] = useState(rawData);
 
     const schema = useSchema(editorSchema);
-    const data = useData(editorData);
+    const [data, dataError] = useData(editorData);
 
     return (
         <Container>
@@ -56,9 +59,18 @@ export const Example: FC<Props> = ({ rawSchema, rawData }: Props) => {
 
             <CardContainer>
                 <Heading>Result</Heading>
-                {data.map((item, idx) => (
-                    <Card key={idx} schema={schema} data={item} />
-                ))}
+
+                {dataError && (
+                    <ErrorContainer>
+                        <ErrorHeading>Data Error</ErrorHeading>
+                        <ErrorMessage>{dataError.message}</ErrorMessage>
+                    </ErrorContainer>
+                )}
+
+                {!dataError &&
+                    data.map((item, idx) => (
+                        <Card key={idx} schema={schema} data={item} />
+                    ))}
             </CardContainer>
         </Container>
     );
