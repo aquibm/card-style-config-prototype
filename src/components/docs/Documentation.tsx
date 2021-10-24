@@ -1,4 +1,8 @@
 import { FC } from 'react';
+
+import { LayoutExamples } from './examples/layout';
+import { TypographyExamples } from './examples/typography';
+
 import {
     Background,
     Container,
@@ -11,10 +15,12 @@ export const Documentation: FC = () => (
         <Container>
             <Section>
                 <Heading>Layouts</Heading>
+                <LayoutExamples />
             </Section>
 
             <Section>
                 <Heading>Typography</Heading>
+                <TypographyExamples />
             </Section>
         </Container>
     </Background>
