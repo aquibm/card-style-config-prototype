@@ -11,6 +11,69 @@ type Props = {
     data: Data;
 };
 
+const layout = `
+    &.flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+`;
+
+const typography = `
+    line-height: 1.4;
+
+    &.h1 {
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    &.h2 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    &.h3 {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    &.h4 {
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #545454;
+    }
+
+    &.h5 {
+        font-size: 20px;
+        font-weight: 400;
+        color: #545454;
+    }
+
+    &.h6 {
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #545454;
+    }
+
+    &.bold {
+        font-size: 700;
+    }
+
+    &.italic {
+        font-style: italic;
+    }
+
+    &.underline {
+        text-decoration: underline;
+    }
+
+    &.uppercase {
+        text-transform: uppercase;
+    }
+`;
+
 export const Card: FC<Props> = ({ schema, data }: Props) => {
     const parseStyle = (
         style?: Style,
@@ -20,7 +83,10 @@ export const Card: FC<Props> = ({ schema, data }: Props) => {
         }
 
         if (typeof style === 'string') {
-            return styled.div.attrs(() => ({ className: style }))``;
+            return styled.div.attrs(() => ({ className: style }))`
+                ${layout}
+                ${typography}
+            `;
         }
 
         if (Array.isArray(style)) {
@@ -44,6 +110,8 @@ export const Card: FC<Props> = ({ schema, data }: Props) => {
             return styled.div.attrs(() => ({
                 className: classNames.join(' '),
             }))`
+                ${layout}
+                ${typography}
                 ${cssRules}
             `;
         }
@@ -54,6 +122,8 @@ export const Card: FC<Props> = ({ schema, data }: Props) => {
             .join('; ');
 
         return styled.div`
+            ${layout}
+            ${typography}
             ${cssRules}
         `;
     };
