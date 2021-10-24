@@ -23,10 +23,18 @@ export const Card: FC<Props> = ({ schema, data }: Props) => {
     };
 
     const renderSection = (section: Section, name: string) => {
+        if (!section) {
+            return null;
+        }
+
         const { content, style } = section;
         const Element = styled.div`
             ${parseStyle(style)}
         `;
+
+        if (!content) {
+            return <Element key={name}>{data[content]}</Element>;
+        }
 
         if (typeof content === 'string') {
             return <Element key={name}>{data[content]}</Element>;

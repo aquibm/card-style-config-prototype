@@ -24,7 +24,7 @@ export const Example: FC<Props> = ({ rawSchema, rawData }: Props) => {
     const [editorSchema, setEditorSchema] = useState(rawSchema);
     const [editorData, setEditorData] = useState(rawData);
 
-    const schema = useSchema(editorSchema);
+    const [schema, schemaError] = useSchema(editorSchema);
     const [data, dataError] = useData(editorData);
 
     return (
@@ -67,7 +67,15 @@ export const Example: FC<Props> = ({ rawSchema, rawData }: Props) => {
                     </ErrorContainer>
                 )}
 
+                {schemaError && (
+                    <ErrorContainer>
+                        <ErrorHeading>Schema Error</ErrorHeading>
+                        <ErrorMessage>{schemaError.message}</ErrorMessage>
+                    </ErrorContainer>
+                )}
+
                 {!dataError &&
+                    !schemaError &&
                     data.map((item, idx) => (
                         <Card key={idx} schema={schema} data={item} />
                     ))}

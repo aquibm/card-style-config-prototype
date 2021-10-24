@@ -3,8 +3,14 @@ import { useMemo } from 'react';
 
 import { Schema } from '../../../types/schema.types';
 
-export const useSchema = (rawSchema: string): Schema =>
+type SchemaTuple = [schema: Schema, error: Error | null];
+
+export const useSchema = (rawSchema: string): SchemaTuple =>
     useMemo(() => {
-        // TODO: Validate
-        return yaml.parse(rawSchema) as Schema;
+        try {
+            const schema = yaml.parse(rawSchema) as Schema;
+            return [schema, null];
+        } catch (error) {
+            return [{ layout: 'card', sections: {} }, error as Error];
+        }
     }, [rawSchema]);
