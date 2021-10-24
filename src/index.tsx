@@ -10,8 +10,13 @@ import { AppRouter, Navigation } from './components/router';
 import './index.css';
 
 const App: FC = () => {
+    const routingBase =
+        process.env.NODE_ENV === 'production'
+            ? '/card-style-config-prototype'
+            : '';
+
     return (
-        <Router>
+        <Router basename={routingBase}>
             <div className="app">
                 <div className="app__section">
                     <Header />
