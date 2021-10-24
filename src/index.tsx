@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Documentation } from './components/docs';
 
 import Header from './components/header';
+import { Documentation } from './components/docs';
+import { Footer } from './components/footer';
 import { AppRouter, Navigation } from './components/router';
 
 import './index.css';
@@ -26,6 +27,7 @@ const App: FC = () => {
             </div>
 
             <Documentation />
+            <Footer />
         </Router>
     );
 };
