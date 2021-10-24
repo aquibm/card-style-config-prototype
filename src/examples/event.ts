@@ -1,19 +1,23 @@
-const data = JSON.stringify([
-  {
-    date: "21",
-    month: "Feb",
-    title: "Feburary 2021 OWASP Meetup",
-    description:
-      "So you have an access key that you need to store somewhere. Maybe it is better not to put it in your code, nor in your container.",
-  },
-  {
-    date: "15",
-    month: "Mar",
-    title: "Testing Serverless Apps in AWS",
-    description:
-      "What are we supposed to test? How do we test our app on both unit and integration levels? How can we make sure our app will work properly in a live environment?",
-  },
-]);
+const data = JSON.stringify(
+  [
+    {
+      date: "21",
+      month: "Feb",
+      title: "Feburary 2021 OWASP Meetup",
+      description:
+        "So you have an access key that you need to store somewhere. Maybe it is better not to put it in your code, nor in your container.",
+    },
+    {
+      date: "15",
+      month: "Mar",
+      title: "Testing Serverless Apps in AWS",
+      description:
+        "What are we supposed to test? How do we test our app on both unit and integration levels? How can we make sure our app will work properly in a live environment?",
+    },
+  ],
+  null,
+  2
+);
 
 const schema = `
 layout: card
