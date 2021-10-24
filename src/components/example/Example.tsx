@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 
 import { Card } from '../card';
@@ -18,8 +18,11 @@ type Props = {
 };
 
 export const Example: FC<Props> = ({ rawSchema, rawData }: Props) => {
-    const schema = useSchema(rawSchema);
-    const data = useData(rawData);
+    const [editorSchema, setEditorSchema] = useState(rawSchema);
+    const [editorData, setEditorData] = useState(rawData);
+
+    const schema = useSchema(editorSchema);
+    const data = useData(editorData);
 
     return (
         <Container>
@@ -29,7 +32,8 @@ export const Example: FC<Props> = ({ rawSchema, rawData }: Props) => {
                     height={400}
                     language="yaml"
                     theme="vs-dark"
-                    value={rawSchema}
+                    value={editorSchema}
+                    onChange={setEditorSchema}
                     options={{
                         lineNumbers: 'off',
                         minimap: { enabled: false },
@@ -41,7 +45,8 @@ export const Example: FC<Props> = ({ rawSchema, rawData }: Props) => {
                     height={200}
                     language="json"
                     theme="vs-dark"
-                    value={rawData}
+                    value={editorData}
+                    onChange={setEditorData}
                     options={{
                         lineNumbers: 'off',
                         minimap: { enabled: false },

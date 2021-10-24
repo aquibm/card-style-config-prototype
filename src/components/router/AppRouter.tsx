@@ -8,17 +8,21 @@ import { Example } from '../example/Example';
 export const AppRouter: FC = () => (
     <Switch>
         <Route path="/basic">
-            <Example rawSchema={basicSchema} rawData={basicData} />
+            <Example key="/basic" rawSchema={basicSchema} rawData={basicData} />
         </Route>
 
         <Route path="/events">
-            <Example rawSchema={eventSchema} rawData={eventData} />
+            <Example
+                key="/events"
+                rawSchema={eventSchema}
+                rawData={eventData}
+            />
         </Route>
 
         <Route path="/custom">Custom stuff.</Route>
 
         <Route>
-            <Example rawSchema={basicSchema} rawData={basicData} />
+            <Example key="/" rawSchema={basicSchema} rawData={basicData} />
         </Route>
     </Switch>
 );
