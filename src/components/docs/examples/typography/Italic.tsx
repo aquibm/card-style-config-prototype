@@ -11,10 +11,7 @@ const rawSchema = `
 layout: card
 sections:
     section:
-        style:
-            font-size: 16px
-            line-height: 1.4
-            font-style: italic
+        style: italic
         content: summary
 `;
 

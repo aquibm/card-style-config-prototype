@@ -12,10 +12,7 @@ const rawSchema = `
 layout: card
 sections:
     parent:
-        style:
-            display: flex
-            justify-content: space-between
-            align-items: center
+        style: flex
         content:
             one:
                 content: one

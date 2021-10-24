@@ -10,10 +10,7 @@ const rawSchema = `
 layout: card
 sections:
     section:
-        style:
-            font-size: 24px
-            font-weight: 400
-            line-height: 1.4
+        style: h3
         content: heading
 `;
 

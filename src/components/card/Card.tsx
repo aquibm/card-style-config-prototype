@@ -33,7 +33,9 @@ function parseStyle(style?: Style): [classNames: string[], cssRules: string[]] {
             );
     }
 
-    const cssRules = Object.keys(style).map((key) => `${key}: ${style[key]}`);
+    const cssRules = Object.keys(style).map(
+        (key) => `${key}: ${style[key]} !important`,
+    );
     return [[], cssRules];
 }
 

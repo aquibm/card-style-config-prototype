@@ -23,10 +23,7 @@ const schema = `
 layout: card
 sections:
   main:
-    style:
-      display: flex
-      justify-content: space-between
-      align-items: center
+    style: flex
     content:
       date:
         style:
@@ -38,14 +35,12 @@ sections:
           text-align: center
         content:
           date:
-            style:
-              font-size: 32px
+            style: h1
             content: date
           month:
             style:
-              text-transform: uppercase
-              font-weight: 700
-              color: '#aaa'
+              - h6
+              - color: '#aaa'
             content: month
       description:
         style:
@@ -54,14 +49,10 @@ sections:
         content:
           title:
             style:
-              font-size: 24px
-              line-height: 1.6
-              margin-bottom: 8px
+              - h3
+              - margin-bottom: 12px
             content: title
           description:
-            style:
-              font-size: 16px
-              line-height: 1.5
             content: description
 `;
 

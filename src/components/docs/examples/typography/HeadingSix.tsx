@@ -10,12 +10,7 @@ const rawSchema = `
 layout: card
 sections:
     section:
-        style:
-            font-size: 16px
-            font-weight: 700
-            line-height: 1.4
-            text-transform: uppercase
-            color: '#545454'
+        style: h6
         content: heading
 `;
 

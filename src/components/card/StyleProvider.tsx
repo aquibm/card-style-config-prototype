@@ -47,7 +47,7 @@ export const StyleProvider = styled.div`
     }
 
     & .bold {
-        font-size: 700;
+        font-weight: 700;
     }
 
     & .italic {

@@ -24,20 +24,18 @@ sections:
   heading:
     content: title
     style:
-      margin-bottom: 12px
-      font-size: 20px
+      - h3
+      - margin-bottom: 12px
   summary:
     content: summary
     style:
       margin-bottom: 8px
-      font-size: 16px
-      line-height: 1.45
       color: '#555'
   post-date:
     content: posted
     style:
-      font-size: 14px
-      text-transform: uppercase
-      text-align: right
-      color: "#999"
+      - h6
+      - font-size: 14px
+        text-align: right
+        color: "#999"
 `;
