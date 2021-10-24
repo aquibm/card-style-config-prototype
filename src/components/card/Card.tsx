@@ -50,6 +50,8 @@ export const Card: FC<Props> = ({ schema, data }: Props) => {
         );
     };
 
+    if (!schema || !schema.sections) return null;
+
     const topLevelSectionNames = Object.keys(schema.sections);
 
     return (

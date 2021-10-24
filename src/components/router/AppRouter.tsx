@@ -7,13 +7,21 @@ import {
     schema as customSchema,
     data as customData,
 } from '../../examples/custom';
+import {
+    schema as postSchema,
+    data as postData,
+} from '../../examples/blog-post';
 
 import { Example } from '../example/Example';
 
 export const AppRouter: FC = () => (
     <Switch>
-        <Route path="/basic">
-            <Example key="/basic" rawSchema={basicSchema} rawData={basicData} />
+        <Route path="/blog">
+            <Example key="/blog" rawSchema={postSchema} rawData={postData} />
+        </Route>
+
+        <Route path="/log">
+            <Example key="/log" rawSchema={basicSchema} rawData={basicData} />
         </Route>
 
         <Route path="/events">
@@ -33,7 +41,7 @@ export const AppRouter: FC = () => (
         </Route>
 
         <Route>
-            <Example key="/" rawSchema={basicSchema} rawData={basicData} />
+            <Example key="/" rawSchema={postSchema} rawData={postData} />
         </Route>
     </Switch>
 );
