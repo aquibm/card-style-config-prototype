@@ -28,30 +28,39 @@ export const Heading = styled.h2`
 `;
 
 export const ExampleContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding-bottom: 30px;
-    margin-bottom: 30px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
 
     &:last-child {
         border-bottom: none;
         margin-bottom: 0px;
     }
+
+    @media screen and (min-width: 768px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 `;
 
 export const ExampleName = styled.h3`
-    flex: 0 0 80px;
     font-weight: 400;
+
+    @media screen and (min-width: 768px) {
+        flex: 0 0 80px;
+    }
 `;
 
 export const ExampleDescription = styled.p`
-    flex: 0 0 400px;
-    margin-left: 40px;
+    @media screen and (min-width: 768px) {
+        flex: 0 0 320px;
+        margin-left: 40px;
+    }
 `;
 
 export const ExamplePreview = styled.div`
-    flex: 1 0;
-    margin-left: 40px;
+    @media screen and (min-width: 768px) {
+        flex: 1;
+        margin-left: 40px;
+    }
 `;

@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
-    display: flex;
-    justify-content: center;
+    display: block;
+
+    @media screen and (min-width: 768px) {
+        display: flex;
+        justify-content: center;
+    }
 `;
 
 type LinkProps = {
@@ -11,8 +15,10 @@ type LinkProps = {
 };
 
 export const Link = styled(RouterLink)<LinkProps>`
-    padding: 12px 32px;
-    margin-right: 15px;
+    display: block;
+
+    padding: 12px 10px;
+    margin: 0 0 15px 0;
     border-radius: 8px;
 
     color: ${(props) => (props.selected ? 'white' : '#333')};
@@ -30,7 +36,12 @@ export const Link = styled(RouterLink)<LinkProps>`
         box-shadow: 0px 5px 12px #e9e9e9;
     }
 
-    &:last-child {
-        margin-right: 0;
+    @media screen and (min-width: 768px) {
+        padding: 12px 32px;
+        margin: 0 15px 0 0;
+
+        &:last-child {
+            margin-right: 0;
+        }
     }
 `;

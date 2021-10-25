@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    display: flex;
+    @media screen and (min-width: 768px) {
+        display: flex;
+    }
 `;
 
 export const EditorContainer = styled.div`
