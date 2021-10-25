@@ -56,18 +56,16 @@ export const Card: FC<Props> = ({ schema, data }: Props) => {
 
         if (!content || typeof content === 'string') {
             return (
-                <StyleProvider>
-                    <Element key={name} className={classNames}>
-                        {data[content]}
-                    </Element>
+                <StyleProvider key={name}>
+                    <Element className={classNames}>{data[content]}</Element>
                 </StyleProvider>
             );
         }
 
         const subSectionNames = Object.keys(content);
         return (
-            <StyleProvider>
-                <Element key={name} className={classNames}>
+            <StyleProvider key={name}>
+                <Element className={classNames}>
                     {subSectionNames.map((subSectionName) =>
                         renderSection(content[subSectionName], subSectionName),
                     )}
